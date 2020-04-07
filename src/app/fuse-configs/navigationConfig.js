@@ -239,7 +239,7 @@ const navigationConfig = [
 				translate: 'PARENTS',
 				type: 'item',
 				icon: 'wc',
-			  url: '/sms/people/parents'
+				url: '/sms/people/parents'
 			},
 			{
 				id: 'teachers',
@@ -365,16 +365,113 @@ const navigationConfig = [
 	// 			icon: 'group',
 	// 			url: '/sms/users'
 	// 		},
-			// {
-			// 	id: 'admin',
-			// 	title: 'Administration',
-			// 	translate: 'ADMINISTRATION',
-			// 	type: 'item',
-			// 	icon: 'queue_play_next',
-			// 	url: '/sms/admin'
-			// }
+	// {
+	// 	id: 'admin',
+	// 	title: 'Administration',
+	// 	translate: 'ADMINISTRATION',
+	// 	type: 'item',
+	// 	icon: 'queue_play_next',
+	// 	url: '/sms/admin'
+	// }
 	// 	]
 	// }
+
+	{
+		id: 'fair',
+		title: 'Fairs',
+		type: 'collapse',
+		// translate: 'FAIRS',
+		icon: 'home',
+		//'url': '/apps/e-commerce',
+		children: [
+			{
+				id: 'fairs-child',
+				title: 'Fairs',
+				type: 'item',
+				url: '/university/invitations',
+			},
+			{
+				id: 'past-confirmed',
+				title: 'Past Confirmed',
+				type: 'item',
+				url: '/university/past_university',
+			},
+			{
+				id: 'future-confirmed',
+				title: 'Future Confirmed',
+				type: 'item',
+				url: '/university/future_university',
+			},
+
+		]
+
+	},
+	{
+		id: 'schools',
+		title: 'Schools',
+		// translate: 'SCHOOLS',
+		type: 'item',
+		icon: 'school',
+		url: '/university/schools'
+	},
+	{
+		id: 'users',
+		title: 'Users',
+		// translate: 'SCHOOLS',
+		type: 'item',
+		icon: 'person',
+		url: '/university/users'
+	}
 ];
 
+// Uni Management
+// const navigationConfig = [
+// 	{
+// 		id: 'fair',
+// 		title: 'Fairs',
+// 		type: 'collapse',
+// 		// translate: 'FAIRS',
+// 		icon: 'home',
+// 		//'url': '/apps/e-commerce',
+// 		children: [
+// 			{
+// 				id: 'fairs-child',
+// 				title: 'Fairs',
+// 				type: 'item',
+// 				url: '/university/invitations',
+// 			},
+// 			{
+// 				id: 'past-confirmed',
+// 				title: 'Past Confirmed',
+// 				type: 'item',
+// 				url: '/university/past_university',
+// 			},
+// 			{
+// 				id: 'future-confirmed',
+// 				title: 'Future Confirmed',
+// 				type: 'item',
+// 				url: '/university/future_university',
+// 			},
+
+// 		]
+
+// 	},
+// 	{
+// 		id: 'schools',
+// 		title: 'Schools',
+// 		// translate: 'SCHOOLS',
+// 		type: 'item',
+// 		icon: 'school',
+// 		url: '/university/schools'
+// 	},
+// 	{
+// 		id: 'users',
+// 		title: 'Users',
+// 		// translate: 'SCHOOLS',
+// 		type: 'item',
+// 		icon: 'person',
+// 		url: '/university/user_list'
+// 	}
+
+// ];
 export default navigationConfig;
