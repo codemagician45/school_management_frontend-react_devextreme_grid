@@ -8,9 +8,12 @@ import Formsy from 'formsy-react';
 const useStyle = makeStyles({
 
     common: {
-        maxWidth: '80rem',
-        width: '60%',
-        padding: '16px'
+        // maxWidth: '80rem',
+        paddingTop: '16px',
+        paddingBottom: '16px',
+        paddingLeft: '36px',
+        paddingRight: '36px',
+        width: '100%'
     },
     imgDiv: {
         maxWidth: '30rem',
@@ -21,14 +24,17 @@ const useStyle = makeStyles({
         width: '100%'
     },
     button: {
-        display: 'flex',
-        flexDirection: 'column-reverse',
-        padding: '16px',
-        marginBottom: '24px'
+        // display: 'flex',
+        // flexDirection: 'column-reverse',
+        // padding: '16px',
+        marginBottom: '24px',
+        marginRight: '36px',
+        float: 'right'
     },
     subHeader: {
         fontSize: '24px',
-        padding: '16px'
+        padding: '16px',
+        paddingBottom: '0px'
     }
 
 });
@@ -49,7 +55,7 @@ function UsersAdd() {
                 <div className={classes.common}>
                     <Formsy>
                         <TextFieldFormsy
-                            className="mt-8 mb-16"
+                            className="mt-8 mb-8"
                             type="text"
                             name="name"
                             id="name"
@@ -68,7 +74,7 @@ function UsersAdd() {
 
                     <div className="flex">
                         <TextField
-                            className="mt-8 mb-16 mr-16"
+                            className="mt-8 mb-8 mr-16"
                             label="Mobile Number"
                             autoFocus
                             type="number"
@@ -79,7 +85,7 @@ function UsersAdd() {
                         />
 
                         <TextField
-                            className="mt-8 mb-16"
+                            className="mt-8 mb-8"
                             label="Email"
                             type="email"
                             id="email"
@@ -90,7 +96,7 @@ function UsersAdd() {
                     </div>
                     <div className="flex">
                         <TextField
-                            className="mt-8 mb-16 mr-16"
+                            className="mt-8 mb-8 mr-16"
                             label="Phone Number"
                             autoFocus
                             type="number"
@@ -101,7 +107,7 @@ function UsersAdd() {
                         />
 
                         <TextField
-                            className="mt-8 mb-16"
+                            className="mt-8 mb-8"
                             label="Ext"
                             type="text"
                             id="ext"
@@ -111,7 +117,7 @@ function UsersAdd() {
                         />
                     </div>
                     <TextField
-                        className="mt-8 mb-16"
+                        className="mt-8 mb-8"
                         label="Title"
                         type="text"
                         id="title"
@@ -120,11 +126,12 @@ function UsersAdd() {
                         fullWidth
                     />
                 </div>
-                <div className={classes.button} >
-                    <Button variant="contained" color="secondary" >
-                        Add Record
-                    </Button>
-                </div>
+
+            </div>
+            <div className={classes.button} >
+                <Button variant="contained" color="secondary" >
+                    Add Record
+                </Button>
             </div>
         </Card>
     )

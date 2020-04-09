@@ -31,8 +31,8 @@ function UserMenu(props) {
 				{user.data.photoURL ? (
 					<Avatar className="" alt="user photo" src={user.data.photoURL} />
 				) : (
-					<Avatar className="">{user.data.displayName}</Avatar>
-				)}
+						<Avatar className="">{user.data.displayName}</Avatar>
+					)}
 
 				<div className="hidden md:flex flex-col mx-12 items-start">
 					<Typography component="span" className="normal-case font-600 flex">
@@ -74,32 +74,38 @@ function UserMenu(props) {
 						</MenuItem>
 					</>
 				) : (
-					<>
-						<MenuItem component={Link} to="/sms/profile" onClick={userMenuClose} role="button">
-							<ListItemIcon className="min-w-40">
-								<Icon>account_circle</Icon>
-							</ListItemIcon>
-							<ListItemText primary="Profile" />
-						</MenuItem>
-						<MenuItem component={Link} to="/sms/mail" onClick={userMenuClose} role="button">
-							<ListItemIcon className="min-w-40">
-								<Icon>mail</Icon>
-							</ListItemIcon>
-							<ListItemText primary="Inbox" />
-						</MenuItem>
-						<MenuItem
-							onClick={() => {
-								dispatch(authActions.logoutUser());
-								userMenuClose();
-							}}
-						>
-							<ListItemIcon className="min-w-40">
-								<Icon>exit_to_app</Icon>
-							</ListItemIcon>
-							<ListItemText primary="Logout" />
-						</MenuItem>
-					</>
-				)}
+						<>
+							<MenuItem component={Link} to="/university/profile/university" onClick={userMenuClose} role="button">
+								<ListItemIcon className="min-w-40">
+									<Icon>school</Icon>
+								</ListItemIcon>
+								<ListItemText primary="Edit University Profile" />
+							</MenuItem>
+							<MenuItem component={Link} to="/university/profile/user" onClick={userMenuClose} role="button">
+								<ListItemIcon className="min-w-40">
+									<Icon>person</Icon>
+								</ListItemIcon>
+								<ListItemText primary="Edit User Profile" />
+							</MenuItem>
+							{/* <MenuItem component={Link} to="/sms/mail" onClick={userMenuClose} role="button">
+								<ListItemIcon className="min-w-40">
+									<Icon>mail</Icon>
+								</ListItemIcon>
+								<ListItemText primary="Inbox" />
+							</MenuItem> */}
+							<MenuItem
+								onClick={() => {
+									dispatch(authActions.logoutUser());
+									userMenuClose();
+								}}
+							>
+								<ListItemIcon className="min-w-40">
+									<Icon>exit_to_app</Icon>
+								</ListItemIcon>
+								<ListItemText primary="Logout" />
+							</MenuItem>
+						</>
+					)}
 			</Popover>
 		</>
 	);

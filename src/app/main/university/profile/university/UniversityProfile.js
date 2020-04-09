@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { createFactory } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
 import FuseAnimateGroup from '@fuse/core/FuseAnimateGroup';
-import SchoolsTable from './SchoolsTable';
-import { withRouter } from 'react-router';
-import reducer from '../store/reducers';
-import withReducer from 'app/store/withReducer';
+import UniversityProfileEdit from './UniversityProfleEdit';
 
 
 const useStyles = makeStyles({
@@ -14,7 +11,7 @@ const useStyles = makeStyles({
     }
 });
 
-function Schools() {
+export default function UniversityProfile() {
     const classes = useStyles();
 
     return (
@@ -25,7 +22,7 @@ function Schools() {
             }}
             header={
                 <div className="pl-24">
-                    <h1 className="text-48">Schools</h1>
+                    <h1 className="text-48">Univerity Profile</h1>
                 </div>
             }
             content={
@@ -34,7 +31,7 @@ function Schools() {
 
                     <div className="flex flex-wrap">
                         <div className="w-full p-24">
-                            <SchoolsTable />
+                            <UniversityProfileEdit />
                         </div>
                     </div>
                 </FuseAnimateGroup>
@@ -43,4 +40,3 @@ function Schools() {
         />
     );
 }
-export default withReducer('university', reducer)(Schools);

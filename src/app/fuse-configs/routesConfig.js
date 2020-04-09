@@ -10,9 +10,9 @@ import LogoutConfig from 'app/main/logout/LogoutConfig';
 import universityConfigs from 'app/main/university/universityConfigs';
 
 const routeConfigs = [
-	...smsConfigs,
-	...pagesConfigs,
-	...elearningConfigs,
+	// ...smsConfigs,
+	// ...pagesConfigs,
+	// ...elearningConfigs,
 	...universityConfigs,
 	LoginConfig,
 	LogoutConfig,
@@ -32,7 +32,7 @@ const routes = [
 	{
 		path: '/',
 		exact: true,
-		component: () => <Redirect to="/sms/dashboard" />
+		component: () => <Redirect to="/university/schools" />
 	},
 	// {
 	// 	path: '/',
