@@ -1,14 +1,12 @@
 import * as Actions from '../actions';
 
 const initialState = {
-    data: [],
+    data: null
 };
 
-const schoolsReducer = function (state = initialState, action) {
-
+const userReducer = function (state = initialState, action) {
     switch (action.type) {
-
-        case Actions.GET_SCHOOLS:
+        case Actions.GET_USERS:
             {
                 return {
                     ...state,
@@ -19,8 +17,7 @@ const schoolsReducer = function (state = initialState, action) {
             {
                 return state;
             }
-
     }
 };
 
-export default schoolsReducer;
+export default userReducer;

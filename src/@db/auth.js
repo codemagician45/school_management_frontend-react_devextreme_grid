@@ -48,7 +48,7 @@ fetch('http://localhost:3000/api/users').then(response => response.json()).then(
 		}
 	};
 	users.push(data);
-	// console.log(data);
+	console.log(data);
 }))
 
 const authDB = {
@@ -56,7 +56,7 @@ const authDB = {
 };
 
 // console.log(users);
-// console.log(authDB);
+console.log("authDB", authDB);
 
 const jwtConfig = {
 	secret: '|?af%fF<|?kiuartppasf%dfF<fF<^FDf42',

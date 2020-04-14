@@ -9,6 +9,7 @@ export function submitLogin({ email, password }) {
 		jwtService
 			.signInWithEmailAndPassword(email, password)
 			.then(user => {
+				console.log("user", user)
 				dispatch(UserActions.setUserData(user));
 
 				return dispatch({

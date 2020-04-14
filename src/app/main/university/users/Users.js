@@ -33,7 +33,7 @@ export default function Users() {
 
                     <div className="flex flex-wrap">
                         <div className="w-full p-24">
-                            <UsersAdd />
+                            {/* <UsersAdd /> */}
 
                             <UsersTable />
                         </div>

@@ -35,7 +35,7 @@ function SchoolsTable() {
                     <RemoteOperations />
                     <SearchPanel visible={true} width={240} placeholder="Search..." />
                     <Sorting mode="multiple" />
-                    <Editing mode="row" allowUpdating={true} allowDeleting={true} allowAdding={true} />
+                    {/* <Editing mode="row" allowUpdating={true} allowDeleting={true} allowAdding={true} /> */}
                     <StateStoring enabled={true} type="localStorage" storageKey="parentsTable" />
                     <Export enabled={true} fileName="Parents" allowExportSelectedData={true} />
                     <Selection mode="multiple" />
@@ -45,7 +45,7 @@ function SchoolsTable() {
                     <Column dataField="email" caption="School Email" />
                     <Column dataField="phone" caption="School Phone" />
                     <Column dataField="city" caption="City" />
-                    <Column dataField="website" caption="Website" />
+                    <Column dataField="website" caption="Website" cellRender={cellRender} icon="link" />
                     <Column dataField="users" caption="Contact Person" />
                     <Column dataField="emails" caption="Contact Email" />
                     <Pager showPageSizeSelector={true} allowedPageSizes={[5, 10, 20, 50]} showInfo={false} />
@@ -55,5 +55,12 @@ function SchoolsTable() {
         </Paper>
     )
 }
+
+const cellRender = (link) => {
+    console.log("cellrender", link.data.website)
+    return <a href={link.data.website} target="_blank" ><i className="dx-icon-link"></i></a>
+}
+
+
 // export default withReducer('university', reducer)(SchoolsTable);
 export default withRouter(SchoolsTable);
