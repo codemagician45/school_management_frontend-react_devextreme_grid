@@ -8,12 +8,14 @@ import LoginConfig from 'app/main/login/LoginConfig';
 import LogoutConfig from 'app/main/logout/LogoutConfig';
 
 import universityConfigs from 'app/main/university/universityConfigs';
+import schoolConfigs from 'app/main/school/schoolConfigs';
 
 const routeConfigs = [
 	// ...smsConfigs,
 	// ...pagesConfigs,
 	// ...elearningConfigs,
 	...universityConfigs,
+	...schoolConfigs,
 	LoginConfig,
 	LogoutConfig,
 

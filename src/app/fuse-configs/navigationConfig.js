@@ -427,51 +427,182 @@ i18next.addResourceBundle('ar', 'navigation', ar);
 // Uni Management
 const navigationConfig = [
 	{
-		id: 'fair',
-		title: 'Fairs',
-		type: 'collapse',
-		// translate: 'FAIRS',
-		icon: 'home',
-		//'url': '/apps/e-commerce',
+
+		id: 'uni_management',
+		title: 'Uni_Management',
+		translate: 'UNI-MANAGEMENT',
+		type: 'group',
+		icon: 'apps',
 		children: [
 			{
-				id: 'fairs-child',
+				id: 'fair_uni',
 				title: 'Fairs',
+				type: 'collapse',
+				// translate: 'FAIRS',
+				icon: 'home',
+				//'url': '/apps/e-commerce',
+				children: [
+					{
+						id: 'fairs-child',
+						title: 'Fairs',
+						type: 'item',
+						url: '/university/fairs/fairs',
+					},
+					{
+						id: 'past-confirmed',
+						title: 'Past Confirmed',
+						type: 'item',
+						url: '/university/fairs/past-confirmed',
+					},
+					{
+						id: 'future-confirmed',
+						title: 'Future Confirmed',
+						type: 'item',
+						url: '/university/fairs/future-confirmed',
+					},
+
+				]
+
+			},
+
+			{
+				id: 'schools',
+				title: 'Schools',
+				// translate: 'SCHOOLS',
 				type: 'item',
-				url: '/university/fairs/fairs',
+				icon: 'school',
+				url: '/university/schools'
 			},
 			{
-				id: 'past-confirmed',
-				title: 'Past Confirmed',
+				id: 'users',
+				title: 'Users',
+				// translate: 'SCHOOLS',
 				type: 'item',
-				url: '/university/fairs/past-confirmed',
+				icon: 'person',
+				url: '/university/users'
+			}
+		],
+
+
+	},
+	{
+
+		id: 'school_management',
+		title: 'School_Management',
+		translate: 'SCHOOL-MANAGEMENT',
+		type: 'group',
+		icon: 'apps',
+		children: [
+			{
+				id: 'fair_sch',
+				title: 'Fairs',
+				type: 'collapse',
+				// translate: 'FAIRS',
+				icon: 'assignment',
+				children: [
+					{
+						id: 'fairs-list',
+						title: 'Fairs List',
+						type: 'item',
+						url: '/schools/fairs/fairs_list',
+					},
+					{
+						id: 'new-fair',
+						title: 'New Fair',
+						type: 'item',
+						url: '/schools/fairs/create_fair',
+					},
+
+
+				]
+
 			},
 			{
-				id: 'future-confirmed',
-				title: 'Future Confirmed',
+				id: 'universities_sch',
+				title: 'Univerisities',
+				type: 'collapse',
+				// translate: 'FAIRS',
+				icon: 'assignment',
+				children: [
+					{
+						id: 'universities_sch',
+						title: 'Universities',
+						// translate: 'SCHOOLS',
+						type: 'item',
+						url: '/schools/univerisites/univerisities_list'
+					},
+					{
+						id: 'confirmed_universities_sch',
+						title: 'Confirmed Univerisites',
+						// translate: 'SCHOOLS',
+						type: 'item',
+						url: '/schools/univerisites/confirmed_universities'
+					}
+				]
+			},
+
+			{
+				id: 'counselor_sch',
+				title: 'Counselor',
 				type: 'item',
-				url: '/university/fairs/future-confirmed',
+				// translate: 'FAIRS',
+				icon: 'assignment',
+				'url': '/schools/counselor_list',
+
+			},
+			{
+				id: 'students_reg_sch',
+				title: 'Students Registration',
+				type: 'item',
+				// translate: 'FAIRS',
+				icon: 'person_add',
+				'url': '/schools/students_registration',
+
+			},
+			{
+				id: 'workshop_list_sch',
+				title: 'WorkShops List',
+				type: 'item',
+				// translate: 'FAIRS',
+				icon: 'timer',
+				'url': '/schools/workshop_list',
+
+			},
+
+			{
+				id: 'manage_career_talks',
+				title: 'Manage Career Talks',
+				type: 'collapse',
+				// translate: 'FAIRS',
+				icon: 'person_pin',
+				children: [
+					{
+						id: 'view_career_talks',
+						title: 'View Career Talks',
+						// translate: 'SCHOOLS',
+						type: 'item',
+						url: '/schools/career_talks/view'
+					},
+					{
+						id: 'add_career_talks',
+						title: 'Add Career Talks',
+						// translate: 'SCHOOLS',
+						type: 'item',
+						url: '/schools/career_talks/add'
+					},
+					{
+						id: 'career_confirmed_sessions',
+						title: 'Confirmed Sessions',
+						// translate: 'SCHOOLS',
+						type: 'item',
+						url: '/schools/career_talks/confirmed_sessions'
+					}
+				]
 			},
 
 		]
-
-	},
-	{
-		id: 'schools',
-		title: 'Schools',
-		// translate: 'SCHOOLS',
-		type: 'item',
-		icon: 'school',
-		url: '/university/schools'
-	},
-	{
-		id: 'users',
-		title: 'Users',
-		// translate: 'SCHOOLS',
-		type: 'item',
-		icon: 'person',
-		url: '/university/users'
 	}
+
 
 ];
 export default navigationConfig;

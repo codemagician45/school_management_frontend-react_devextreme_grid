@@ -17,7 +17,7 @@ function SchoolsTable() {
         dispatch(Actions.getSchools());
     }, [dispatch]);
 
-    console.log("schools", schools);
+    console.log(process.env)
     return (
         <Paper className="w-full mt-24">
             <div className="p-16">
@@ -57,7 +57,6 @@ function SchoolsTable() {
 }
 
 const cellRender = (link) => {
-    console.log("cellrender", link.data.website)
     return <a href={link.data.website} target="_blank" ><i className="dx-icon-link"></i></a>
 }
 
