@@ -1,8 +1,9 @@
-import React, { createFactory } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
 import FuseAnimateGroup from '@fuse/core/FuseAnimateGroup';
-import UserProfileEdit from './UserProfileEdit';
+import FutureFairTable from '../future-confirmed/FutureFairTable'
+
 
 const useStyles = makeStyles({
     header: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function UniversityProfile() {
+export default function FutureFair() {
     const classes = useStyles();
 
     return (
@@ -21,7 +22,7 @@ export default function UniversityProfile() {
             }}
             header={
                 <div className="pl-24">
-                    <h1 className="text-48">User Profile</h1>
+                    <h1 className="text-48">FutureFair</h1>
                 </div>
             }
             content={
@@ -30,7 +31,7 @@ export default function UniversityProfile() {
 
                     <div className="flex flex-wrap">
                         <div className="w-full p-24">
-                            <UserProfileEdit />
+                            <FutureFairTable />
                         </div>
                     </div>
                 </FuseAnimateGroup>

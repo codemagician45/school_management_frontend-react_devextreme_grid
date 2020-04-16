@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-export default function UserProfileConfig() {
-    return (
-        <div>
+const UserProfileConfig = {
+    settings: {
+        layout: {
+            config: {}
+        }
+    },
+    routes: [
+        {
+            path: '/university/profile/user',
+            component: React.lazy(() => import('./UserProfile'))
+        }
+    ]
+};
 
-        </div>
-    )
-}
+export default UserProfileConfig;

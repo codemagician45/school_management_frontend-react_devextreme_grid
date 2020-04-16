@@ -433,6 +433,7 @@ const navigationConfig = [
 		translate: 'UNI-MANAGEMENT',
 		type: 'group',
 		icon: 'apps',
+		auth: authRoles.university,
 		children: [
 			{
 				id: 'fair_uni',
@@ -492,6 +493,7 @@ const navigationConfig = [
 		translate: 'SCHOOL-MANAGEMENT',
 		type: 'group',
 		icon: 'apps',
+		auth: authRoles.school,
 		children: [
 			{
 				id: 'fair_sch',

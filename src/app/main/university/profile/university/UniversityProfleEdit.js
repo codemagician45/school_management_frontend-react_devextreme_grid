@@ -50,31 +50,30 @@ function UniversityProfileEdit() {
 
     const dispatch = useDispatch();
 
-    const userData = {
-        id: 2
+    const myUniId = {
+        id: localStorage.getItem('uni_id')
     }
     const custom = [];
     useEffect(() => {
-        dispatch(Actions.getUniProfile(userData));
+        dispatch(Actions.getUniProfile(myUniId));
     }, [dispatch]);
 
 
     useEffect(() => {
-        if (myUniPro.data) {
-            setID(myUniPro.data[0].id);
-            setName(myUniPro.data[0].name);
-            setPhone(myUniPro.data[0].phone);
-            setEmail(myUniPro.data[0].email);
-            setWebsite(myUniPro.data[0].website);
-            setMapLink(myUniPro.data[0].map_link);
-            setCompus(myUniPro.data[0].compus.split(","));
-            setCountry(myUniPro.data[0].country.split(","));
-            setCity(myUniPro.data[0].city.split(","));
-            setAddress(myUniPro.data[0].country.split(","));
-            setUserName(myUniPro.data[0].users.split(","));
-            setUserEmail(myUniPro.data[0].emails.split(","));
+        if (myUniId && myUniPro.data) {
 
-
+            setID(myUniPro.data[0] && myUniPro.data[0].id);
+            setName(myUniPro.data[0] && myUniPro.data[0].name);
+            setPhone(myUniPro.data[0] && myUniPro.data[0].phone);
+            setEmail(myUniPro.data[0] && myUniPro.data[0].email);
+            setWebsite(myUniPro.data[0] && myUniPro.data[0].website);
+            setMapLink(myUniPro.data[0] && myUniPro.data[0].map_link);
+            setCompus(myUniPro.data[0] && myUniPro.data[0].compus && myUniPro.data[0].compus.split(","));
+            setCountry(myUniPro.data[0] && myUniPro.data[0].country && myUniPro.data[0].country.split(","));
+            setCity(myUniPro.data[0] && myUniPro.data[0].city && myUniPro.data[0].city.split(","));
+            setAddress(myUniPro.data[0] && myUniPro.data[0].country && myUniPro.data[0].country.split(","));
+            setUserName(myUniPro.data[0] && myUniPro.data[0].users && myUniPro.data[0].users.split(","));
+            setUserEmail(myUniPro.data[0] && myUniPro.data[0].emails && myUniPro.data[0].emails.split(","));
         }
 
     }, [myUniPro.data])
@@ -117,13 +116,13 @@ function UniversityProfileEdit() {
 
     const onSubmit = () => {
         const updateData = {
+            id: localStorage.getItem('uni_id'),
             name: name,
             phone: phone,
             email: email,
             website: website,
             map_link: map_link,
         }
-        // const updateData = "aaa";
         dispatch(Actions.updateUniProfile(updateData));
 
     }
@@ -149,7 +148,7 @@ function UniversityProfileEdit() {
                                     label="University Name"
                                     variant="outlined"
                                     fullWidth
-                                    value={name}
+                                    value={name || ''}
                                     onChange={(e) => setName(e.target.value)}
                                 />
                             </Grid>
@@ -158,7 +157,7 @@ function UniversityProfileEdit() {
                                     <TextField
                                         className="mt-8 mb-8 mr-16"
                                         label="Phone Number"
-                                        value={phone}
+                                        value={phone || ''}
                                         onChange={(e) => setPhone(e.target.value)}
                                         autoFocus
                                         type="number"
@@ -176,7 +175,7 @@ function UniversityProfileEdit() {
                                         type="email"
                                         id="uni_email"
                                         name="uni_email"
-                                        value={email}
+                                        value={email || ''}
                                         onChange={(e) => setEmail(e.target.value)}
                                         variant="outlined"
                                         fullWidth
@@ -192,7 +191,7 @@ function UniversityProfileEdit() {
                                         type="text"
                                         id="uni_website"
                                         name="uni_website"
-                                        value={website}
+                                        value={website || ''}
                                         onChange={(e) => setWebsite(e.target.value)}
                                         variant="outlined"
                                         fullWidth
@@ -205,7 +204,7 @@ function UniversityProfileEdit() {
                                         type="text"
                                         id="uni_map"
                                         name="uni_map"
-                                        value={map_link}
+                                        value={map_link || ''}
                                         onChange={(e) => setMapLink(e.target.value)}
                                         variant="outlined"
                                         fullWidth
@@ -228,22 +227,25 @@ function UniversityProfileEdit() {
                     </Grid>
                 </Grid>
 
-                {/* <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
-                    <AddIcon onClick={() => addCustom()} />
-                </Fab> */}
-                <UniversityProfileEditBottom
-                    // compus={compus}
-                    // country={country}
-                    // city={city}
-                    // address={address}
-                    // userName={userName}
-                    // userEmail={userEmail}
-                    customData={customData}
-                    addCustom={addCustom}
-                    removeCustom={removeCustom}
-                />
+                <Grid container spacing={1}>
+                    <Grid item xs={10} sm={10}>
+
+                        <UniversityProfileEditBottom
+                            customData={customData}
+                            addCustom={addCustom}
+                            removeCustom={removeCustom}
+                        />
+
+                    </Grid>
+                    <Grid item={2} sm={2}>
+                        <Fab size="small" color="secondary" aria-label="add" className="mt-16">
+                            <AddIcon onClick={addCustom} />
+                        </Fab>
+
+                    </Grid>
+                </Grid>
                 <div className="p-16 float-right">
-                    <Button variant="contained" color="secondary" onClick={onSubmit} >
+                    <Button variant="contained" color="secondary" onClick={onSubmit} className="mr-16" >
                         Submit
                 </Button>
                     <Button variant="contained" color="primary" >

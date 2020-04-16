@@ -49,7 +49,7 @@ function LoginJWT(props) {
 					type="text"
 					name="email"
 					label="Username/Email"
-					value="admin"
+					// value="admin"
 					validations={{
 						minLength: 4
 					}}
@@ -74,7 +74,7 @@ function LoginJWT(props) {
 					type="password"
 					name="password"
 					label="Password"
-					value="admin"
+					// value="admin"
 					validations={{
 						minLength: 4
 					}}

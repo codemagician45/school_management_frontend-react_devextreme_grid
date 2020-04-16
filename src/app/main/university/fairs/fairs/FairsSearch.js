@@ -1,128 +1,69 @@
-import React from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { Card, Input } from '@material-ui/core';
-import { TextFieldFormsy, CheckboxFormsy, RadioGroupFormsy, SelectFormsy, FuseChipSelectFormsy } from '@fuse/core/formsy';
-import { Button, Tab, Tabs, TextField, InputAdornment, Icon, Typography } from '@material-ui/core';
-import Formsy from 'formsy-react';
-import Grid from '@material-ui/core/Grid';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
-
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import Slider from '@material-ui/core/Slider';
-
-import {
-    MuiPickersUtilsProvider,
-    KeyboardTimePicker,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
-
-const useStyle = makeStyles(theme => ({
-    common: {
-        // maxWidth: '80rem',
-        paddingTop: '16px',
-        paddingBottom: '16px',
-        paddingLeft: '36px',
-        paddingRight: '36px',
-        width: '100%'
-    },
-    imgDiv: {
-        maxWidth: '30rem',
-        padding: '16px',
-    }
-
-}));
+import React, { useEffect } from 'react'
+import withReducer from 'app/store/withReducer'
+import { useDispatch, useSelector } from 'react-redux';
+import * as Actions from '../../../school/store/actions';
+import reducer from '../../../school/store/reducers'
+import Paper from '@material-ui/core/Paper';
+import { Typography, Grid, Select } from '@material-ui/core'
+import { SelectBox } from 'devextreme-react/select-box';
 
 
 function FairsSearch() {
 
-    const classes = useStyle();
+    const dispatch = useDispatch();
+    const fairs = useSelector(({ school }) => school.fairs.data);
+    const curriculums = useSelector(({ school }) => school.fairs.curriculums);
+    console.log(fairs);
+    useEffect(() => {
+        dispatch(Actions.getFairsSch());
+    }, [dispatch])
 
+    // const today = new Date();
+    // const pastFairs = fairs.filter((fair) => Date.parse(today) > Date.parse(fair.end_date))
 
+    useEffect(() => {
+        dispatch(Actions.getCurriculums());
+    }, [dispatch])
 
-    const PrettoSlider = withStyles({
-        root: {
-            color: '#52af77',
-            height: 8,
-        },
-        thumb: {
-            height: 24,
-            width: 24,
-            backgroundColor: '#fff',
-            border: '2px solid currentColor',
-            marginTop: -8,
-            marginLeft: -12,
-            '&:focus,&:hover,&$active': {
-                boxShadow: 'inherit',
-            },
-        },
-        active: {},
-        valueLabel: {
-            left: 'calc(-50% + 4px)',
-        },
-        track: {
-            height: 8,
-            borderRadius: 4,
-        },
-        rail: {
-            height: 8,
-            borderRadius: 4,
-        },
-    })(Slider);
+    console.log(curriculums)
+    const curriculumData = ["All"];
+    if (curriculums.length != 0) {
+        console.log("curry_mapping")
+        curriculums.map(curriculum => curriculumData.push(curriculum.label))
+    }
 
+    console.log(curriculumData)
     return (
+        curriculums &&
+        (
+            <Paper className="w-full mt-24">
+                <div className="p-16">
+                    <Typography className="text-24">Fairs</Typography>
+                    <Grid container spacing={3} className="m-40">
+                        <Grid item xs={12} sm={4}>
+                            <Typography className="text-16">Curriculum</Typography>
+                            <SelectBox dataSource={curriculumData}
+                                defaultValue={"All"}
+                            // displayExpr="Name"
+                            // searchEnabled={true}
+                            // searchMode={this.state.searchModeOption}
+                            // searchExpr={this.state.searchExprOption}
+                            // searchTimeout={this.state.searchTimeoutOption}
+                            // minSearchLength={this.state.minSearchLengthOption}
+                            // showDataBeforeSearch={this.state.showDataBeforeSearchOption} 
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
 
-        <Card className="w-full overflow-hidden">
-            <Typography className={classes.subHeader}>Add User</Typography>
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={3}>
-                    <FormControl variant="outlined" className={classes.formControl}>
-                        <InputLabel htmlFor="outlined-age-native-simple">
-                            Age
-                        </InputLabel>
-                        <Select
-                            native
-                            inputProps={{
-                                name: 'age',
-                                id: 'outlined-age-native-simple',
-                            }}
-                        >
-                            <option value="" />
-                            <option value={10}>Ten</option>
-                            <option value={20}>Twenty</option>
-                            <option value={30}>Thirty</option>
-                        </Select>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                    <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
-                </Grid>
-                <Grid item xs={12} sm={3}></Grid>
-                <Grid item xs={12} sm={3}></Grid>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
 
-                <KeyboardDatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    margin="normal"
-                    id="date-picker-inline"
-                    label="Date picker inline"
-                    // value={selectedDate}
-                    // onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                    }}
-                />
-            </Grid>
-
-
-        </Card >
+                        </Grid>
+                    </Grid>
+                </div>
+            </Paper>
+        )
     )
 }
 
-export default FairsSearch;
+export default withReducer('school', reducer)(FairsSearch);

@@ -1,7 +1,8 @@
 import * as Actions from '../actions';
 
 const initialState = {
-    data: null
+    data: null,
+
 };
 
 const uniProReducer = function (state = initialState, action) {
@@ -13,6 +14,7 @@ const uniProReducer = function (state = initialState, action) {
                     data: action.payload
                 };
             }
+
         default:
             {
                 return state;

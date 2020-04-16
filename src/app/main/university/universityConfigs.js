@@ -1,13 +1,15 @@
 import UsersConfig from './users/UsersConfig';
 import SchoolsConfig from './schools/SchoolsConfig';
 import UniversityProfileConfig from './profile/university/UniversityProfileConfig';
-import FairsConfig from './fairs/fairs/FairsConfig';
+import UserProfileConfig from './profile/user/UserProfileConfig';
+import FairsConfigs from './fairs/FairsConfigs';
 
 const universityConfigs = [
     UsersConfig,
     SchoolsConfig,
     UniversityProfileConfig,
-    FairsConfig
+    UserProfileConfig,
+    FairsConfigs
 ];
 
 export default universityConfigs

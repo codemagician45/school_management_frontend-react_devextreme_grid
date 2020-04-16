@@ -75,7 +75,7 @@ function UserMenu(props) {
 					</>
 				) : (
 						<>
-							<MenuItem component={Link} to="/university/profile/university" onClick={userMenuClose} role="button">
+							<MenuItem component={Link} to="/university/profile/university" role="button">
 								<ListItemIcon className="min-w-40">
 									<Icon>school</Icon>
 								</ListItemIcon>

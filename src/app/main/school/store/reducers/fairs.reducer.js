@@ -1,7 +1,8 @@
 import * as Actions from '../actions';
 
 const initialState = {
-    data: []
+    data: [],
+    curriculums: []
 }
 
 const fairsReducer = function (state = initialState, action) {
@@ -11,6 +12,13 @@ const fairsReducer = function (state = initialState, action) {
                 return {
                     ...state,
                     data: action.payload
+                }
+            }
+        case Actions.GET_CURRICULUMS:
+            {
+                return {
+                    ...state,
+                    curriculums: action.payload
                 }
             }
         default:

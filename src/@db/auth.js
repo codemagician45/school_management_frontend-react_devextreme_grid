@@ -9,10 +9,13 @@ fetch('http://localhost:3000/api/users').then(response => response.json()).then(
 		uuid: row.uuid,
 		password: row.password,
 		role: row.role,
+
 		data: {
 			displayName: row.firstName,
 			photoURL: row.photoURL,
 			email: row.email,
+			id: row.id,
+			university_id: row.university_id,
 			settings: {
 				layout: {
 					style: 'layout1',
@@ -48,7 +51,7 @@ fetch('http://localhost:3000/api/users').then(response => response.json()).then(
 		}
 	};
 	users.push(data);
-	console.log(data);
+	// console.log(data);
 }))
 
 const authDB = {
@@ -56,7 +59,7 @@ const authDB = {
 };
 
 // console.log(users);
-console.log("authDB", authDB);
+// console.log("authDB", authDB);
 
 const jwtConfig = {
 	secret: '|?af%fF<|?kiuartppasf%dfF<fF<^FDf42',

@@ -17,7 +17,6 @@ function SchoolsTable() {
         dispatch(Actions.getSchools());
     }, [dispatch]);
 
-    console.log(process.env)
     return (
         <Paper className="w-full mt-24">
             <div className="p-16">
@@ -40,7 +39,7 @@ function SchoolsTable() {
                     <Export enabled={true} fileName="Parents" allowExportSelectedData={true} />
                     <Selection mode="multiple" />
                     <GroupPanel visible={false} />
-                    <Column dataField="id" caption="ID" />
+                    {/* <Column dataField="id" caption="ID" /> */}
                     <Column dataField="name" caption="School Name" />
                     <Column dataField="email" caption="School Email" />
                     <Column dataField="phone" caption="School Phone" />
