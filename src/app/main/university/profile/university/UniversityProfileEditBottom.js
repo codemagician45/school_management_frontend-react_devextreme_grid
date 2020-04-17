@@ -23,16 +23,13 @@ export default function UniversityProfileEditBottom(props) {
 
     const classes = useStyle();
     const { customData } = props;
-    if (customData.length != 0)
-        console.log("customData", customData)
+    // if (customData.length != 0)
+    //     console.log("customData", customData)
 
-    const [compus, setCompus] = useState('');
-    console.log(compus)
-    // const setCompus = (e, i) => {
-    //     // customData[i].compus = e.target.value
-    //     console.log(customData[i]);
-    //     console.log(e.target.value);
-    // }
+    // const [compus, setCompus] = useState('');
+    // console.log(compus)
+
+
     return (
         customData.map(
             (data, i) => (
@@ -48,8 +45,13 @@ export default function UniversityProfileEditBottom(props) {
                                     name="compus"
                                     variant="outlined"
                                     fullWidth
-                                    value={data.compus}
-                                    onChange={(e, i) => setCompus(e.targe.value)}
+                                    defaultValue={data.compus}
+                                    onChange={(e) => {
+                                        // props.compusArr.push(e.target.value)
+                                        var _tempData = customData;
+                                        _tempData[i].compus = e.target.value;
+                                        props.setCustomData(_tempData);
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={2}>
@@ -61,8 +63,14 @@ export default function UniversityProfileEditBottom(props) {
                                     name="country"
                                     variant="outlined"
                                     fullWidth
-                                    value={data.country}
-                                // key={"country" + i}
+                                    defaultValue={data.country}
+                                    // key={"country" + i}
+                                    onChange={(e) => {
+                                        // props.compusArr.push(e.target.value)
+                                        var _tempData = customData;
+                                        _tempData[i].country = e.target.value;
+                                        props.setCustomData(_tempData);
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={2}>
@@ -74,8 +82,14 @@ export default function UniversityProfileEditBottom(props) {
                                     name="city"
                                     variant="outlined"
                                     fullWidth
-                                    value={data.city}
-                                // key={"city" + i}
+                                    defaultValue={data.city}
+                                    // key={"city" + i}
+                                    onChange={(e) => {
+                                        // props.compusArr.push(e.target.value)
+                                        var _tempData = customData;
+                                        _tempData[i].city = e.target.value;
+                                        props.setCustomData(_tempData);
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={2}>
@@ -87,8 +101,14 @@ export default function UniversityProfileEditBottom(props) {
                                     name="address"
                                     variant="outlined"
                                     fullWidth
-                                    value={data.address}
-                                // key={"address" + i}
+                                    defaultValue={data.address}
+                                    // key={"address" + i}
+                                    onChange={(e) => {
+                                        // props.compusArr.push(e.target.value)
+                                        var _tempData = customData;
+                                        _tempData[i].address = e.target.value;
+                                        props.setCustomData(_tempData);
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={2}>
@@ -100,8 +120,14 @@ export default function UniversityProfileEditBottom(props) {
                                     name="user_name"
                                     variant="outlined"
                                     fullWidth
-                                    value={data.users}
-                                // key={"user_name" + i}
+                                    defaultValue={data.users}
+                                    // key={"user_name" + i}
+                                    onChange={(e) => {
+                                        // props.compusArr.push(e.target.value)
+                                        var _tempData = customData;
+                                        _tempData[i].users = e.target.value;
+                                        props.setCustomData(_tempData);
+                                    }}
                                 />
                             </Grid>
                             <Grid item xs={6} sm={2}>
@@ -113,18 +139,20 @@ export default function UniversityProfileEditBottom(props) {
                                     name="user_email"
                                     variant="outlined"
                                     fullWidth
-                                    value={data.emails}
-                                // key={"user_email" + i}
+                                    defaultValue={data.emails}
+                                    // key={"user_email" + i}
+                                    onChange={(e) => {
+                                        // props.compusArr.push(e.target.value)
+                                        var _tempData = customData;
+                                        _tempData[i].emails = e.target.value;
+                                        props.setCustomData(_tempData);
+                                    }}
                                 />
                             </Grid>
                         </Grid>
                     </div>
                     <div className={classes.addRemove}>
-                        {/* <Fab size="small" color="secondary" aria-label="add" className={classes.margin}
-                            // key={"add" + i} 
-                            >
-                                <AddIcon onClick={() => props.addCustom()} />
-                            </Fab> */}
+
                         <Fab size="small" color="primary" aria-label="add" className={classes.margin}
                         //  key={"remove" + i}
                         >
@@ -137,94 +165,5 @@ export default function UniversityProfileEditBottom(props) {
             )
         )
     )
-    // else
-    //     return (
-
-    //         <div className="pr-24 pl-24 flex">
-    //             <div className={classes.bottomDiv}>
-    //                 <Grid container spacing={1}>
-    //                     <Grid item xs={6} sm={2}>
-    //                         <TextField
-    //                             className="mt-8 mb-8 mr-12"
-    //                             label="Compus"
-    //                             type="text"
-    //                             // id="compus"
-    //                             name="compus"
-    //                             variant="outlined"
-    //                             fullWidth
-    //                         // key={"compus" + i}
-    //                         />
-    //                     </Grid>
-    //                     <Grid item xs={6} sm={2}>
-    //                         <TextField
-    //                             className="mt-8 mb-8 mr-12"
-    //                             label="Country"
-    //                             type="text"
-    //                             // id="country"
-    //                             name="country"
-    //                             variant="outlined"
-    //                             fullWidth
-    //                         />
-    //                     </Grid>
-    //                     <Grid item xs={6} sm={2}>
-    //                         <TextField
-    //                             className="mt-8 mb-8 mr-12"
-    //                             label="City"
-    //                             type="text"
-    //                             // id="city"
-    //                             name="city"
-    //                             variant="outlined"
-    //                             fullWidth
-    //                         />
-    //                     </Grid>
-    //                     <Grid item xs={6} sm={2}>
-    //                         <TextField
-    //                             className="mt-8 mb-8 mr-12"
-    //                             label="Address"
-    //                             type="text"
-    //                             // id="address"
-    //                             name="address"
-    //                             variant="outlined"
-    //                             fullWidth
-    //                         />
-    //                     </Grid>
-    //                     <Grid item xs={6} sm={2}>
-    //                         <TextField
-    //                             className="mt-8 mb-8 mr-12"
-    //                             label="User Name"
-    //                             type="text"
-    //                             // id="user_name"
-    //                             name="user_name"
-    //                             variant="outlined"
-    //                             fullWidth
-    //                         />
-    //                     </Grid>
-    //                     <Grid item xs={6} sm={2}>
-    //                         <TextField
-    //                             className="mt-8 mb-8 mr-12"
-    //                             label="Email"
-    //                             type="text"
-    //                             // id="user_email"
-    //                             name="user_email"
-    //                             variant="outlined"
-    //                             fullWidth
-    //                         />
-    //                     </Grid>
-    //                 </Grid>
-    //             </div>
-    //             <div className={classes.addRemove}>
-    //                 <Fab size="small" color="secondary" aria-label="add" className={classes.margin}
-    //                 >
-    //                     <AddIcon onClick={() => props.addCustom()} />
-    //                 </Fab>
-    //                 <Fab size="small" color="primary" aria-label="add" className={classes.margin}
-    //                 >
-    //                     <RemoveIcon
-    //                         onClick={() => props.removeCustom()}
-    //                     />
-    //                 </Fab>
-    //             </div>
-    //         </div>
-    //     )
 
 }

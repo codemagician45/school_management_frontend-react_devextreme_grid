@@ -26,6 +26,14 @@ const useStyle = makeStyles(theme => ({
         paddingRight: '36px',
         width: '100%'
     },
+    upload: {
+        marginLeft: '25%'
+    },
+    img: {
+        minWidth: '120px',
+        marginTop: '60px',
+        marginLeft: '15%'
+    }
 }));
 
 function UniversityProfileEdit() {
@@ -46,7 +54,7 @@ function UniversityProfileEdit() {
     const [userName, setUserName] = useState([]);
     const [userEmail, setUserEmail] = useState([]);
     const [customData, setCustomData] = useState([]);
-
+    const [img, setImage] = useState(null);
 
     const dispatch = useDispatch();
 
@@ -74,21 +82,22 @@ function UniversityProfileEdit() {
             setAddress(myUniPro.data[0] && myUniPro.data[0].country && myUniPro.data[0].country.split(","));
             setUserName(myUniPro.data[0] && myUniPro.data[0].users && myUniPro.data[0].users.split(","));
             setUserEmail(myUniPro.data[0] && myUniPro.data[0].emails && myUniPro.data[0].emails.split(","));
+            setImage(myUniPro.data[0] && myUniPro.data[0].logo);
         }
 
     }, [myUniPro.data])
-
+    console.log(myUniPro);
     useEffect(() => {
         if (userName) {
 
             userName.forEach(function (e, i) {
                 custom.push({
-                    compus: compus[i] ? custom[i] : '',
-                    country: country[i] ? country[i] : '',
-                    city: city[i] ? city[i] : '',
-                    address: address[i] ? address[i] : '',
+                    compus: compus && compus[i] ? compus[i] : '',
+                    country: country && country[i] ? country[i] : '',
+                    city: city && city[i] ? city[i] : '',
+                    address: address && address[i] ? address[i] : '',
                     users: e,
-                    emails: userEmail[i] ? userEmail[i] : ''
+                    emails: userEmail && userEmail[i] ? userEmail[i] : ''
                 })
             });
 
@@ -106,15 +115,32 @@ function UniversityProfileEdit() {
         emails: ''
     }
 
+
+
+
     const addCustom = () => {
         setCustomData([...customData, newCustom])
     }
     const removeCustom = (e) => {
-        console.log(e);
         setCustomData(customData.filter((data, i) => i != e))
     }
 
+    const compusArr = [];
+    const countryArr = [];
+    const cityArr = [];
+    const addressArr = [];
+    const userNameArr = [];
+    const userEmailArr = [];
+
     const onSubmit = () => {
+        console.log("submit event", customData)
+        customData.map(data => compusArr.push(data.compus));
+        customData.map(data => countryArr.push(data.country));
+        customData.map(data => cityArr.push(data.city));
+        customData.map(data => addressArr.push(data.address));
+        customData.map(data => userNameArr.push(data.users));
+        customData.map(data => userEmailArr.push(data.emails));
+
         const updateData = {
             id: localStorage.getItem('uni_id'),
             name: name,
@@ -122,141 +148,204 @@ function UniversityProfileEdit() {
             email: email,
             website: website,
             map_link: map_link,
+            compus: compusArr,
+            country: countryArr,
+            address: addressArr,
+            users: userNameArr,
+            emails: userEmailArr,
+            logo: img && img
         }
         dispatch(Actions.updateUniProfile(updateData));
 
     }
+    console.log("custom", customData)
 
-    return (
-        id && (
-            <Card className="w-full overflow-hidden">
-                {/* <Paper className="w-full mt-24"> */}
-                <Grid container spacing={1}>
-                    <Grid item xs={12} sm={2}>
-                        <div className={classes.imgDiv}>
-                            <img className="max-w-none w-auto h-full pl-16" src="assets/images/logos/headmaster.svg" alt="user" />
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} sm={10}>
-                        <div className={classes.common}>
-                            <Grid item xs={12}>
-                                <TextField
-                                    className="mt-8 mb-8"
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    label="University Name"
-                                    variant="outlined"
-                                    fullWidth
-                                    value={name || ''}
-                                    onChange={(e) => setName(e.target.value)}
-                                />
-                            </Grid>
-                            <Grid container spacing={1}>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        className="mt-8 mb-8 mr-16"
-                                        label="Phone Number"
-                                        value={phone || ''}
-                                        onChange={(e) => setPhone(e.target.value)}
-                                        autoFocus
-                                        type="number"
-                                        id="uni_phone"
-                                        name="uni_phone"
-                                        variant="outlined"
-                                        fullWidth
-                                    />
+    const handleUploadChange = (e) => {
+        const file = e.target.files[0];
+        console.log(file)
+        if (!file) {
+            return;
+        }
+        const reader = new FileReader();
+        reader.readAsBinaryString(file);
 
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        className="mt-8 mb-8"
-                                        label="Email"
-                                        type="email"
-                                        id="uni_email"
-                                        name="uni_email"
-                                        value={email || ''}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        variant="outlined"
-                                        fullWidth
+        reader.onload = () => {
+            // setImage(
+
+            //     {
+            //         'id': FuseUtils.generateGUID(),
+            //         'url': `data:${file.type};base64,${btoa(reader.result)}`,
+            //         'type': 'image'
+            //     }
+
+            // );
+            setImage(
+                `data:${file.type};base64,${btoa(reader.result)}`
+            )
+        };
+
+        reader.onerror = function () {
+            console.log("error on load image");
+        };
+    }
+    console.log("uni", img)
+    if (id)
+        return (
+            id && (
+                <Card className="w-full overflow-hidden">
+                    {/* <Paper className="w-full mt-24"> */}
+                    <Grid container spacing={1}>
+                        <Grid item xs={12} sm={2}>
+                            <div className={classes.img}>
+                                <div className={classes.upload}>
+                                    <input
+                                        accept="image/*"
+                                        className="hidden"
+                                        id="button-file"
+                                        type="file"
+                                        onChange={handleUploadChange}
                                     />
-                                </Grid>
-                            </Grid>
-                            <Grid container spacing={1}>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        className="mt-8 mb-8 mr-16"
-                                        label="Website"
-                                        autoFocus
-                                        type="text"
-                                        id="uni_website"
-                                        name="uni_website"
-                                        value={website || ''}
-                                        onChange={(e) => setWebsite(e.target.value)}
-                                        variant="outlined"
-                                        fullWidth
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
+                                    <label
+                                        htmlFor="button-file"
+                                        className="cursor-pointer"
+                                    >
+                                        <Button variant="contained" component="span">
+                                            <Icon fontSize="large" color="action">cloud_upload</Icon>
+                                        </Button>
+                                    </label>
+                                </div>
+                                {img &&
+                                    <div className="mt-16">
+                                        <img src={img} alt="img" />
+                                    </div>
+                                }
+                            </div>
+                        </Grid>
+                        <Grid item xs={12} sm={10}>
+                            <div className={classes.common}>
+                                <Grid item xs={12}>
                                     <TextField
                                         className="mt-8 mb-8"
-                                        label="Google Map Link"
                                         type="text"
-                                        id="uni_map"
-                                        name="uni_map"
-                                        value={map_link || ''}
-                                        onChange={(e) => setMapLink(e.target.value)}
+                                        name="name"
+                                        id="name"
+                                        label="University Name"
                                         variant="outlined"
                                         fullWidth
+                                        value={name || ''}
+                                        onChange={(e) => setName(e.target.value)}
                                     />
                                 </Grid>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    className="mt-8 mb-8"
-                                    label="Title"
-                                    type="text"
-                                    id="title"
-                                    name="title"
-                                    variant="outlined"
-                                    fullWidth
-                                // onChange={(e) => setTitle(e.target.value)}
-                                />
-                            </Grid>
-                        </div>
+                                <Grid container spacing={1}>
+                                    <Grid item xs={12} sm={6}>
+                                        <TextField
+                                            className="mt-8 mb-8 mr-16"
+                                            label="Phone Number"
+                                            value={phone || ''}
+                                            onChange={(e) => setPhone(e.target.value)}
+                                            autoFocus
+                                            type="number"
+                                            id="uni_phone"
+                                            name="uni_phone"
+                                            variant="outlined"
+                                            fullWidth
+                                        />
+
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <TextField
+                                            className="mt-8 mb-8"
+                                            label="Email"
+                                            type="email"
+                                            id="uni_email"
+                                            name="uni_email"
+                                            value={email || ''}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            variant="outlined"
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Grid container spacing={1}>
+                                    <Grid item xs={12} sm={6}>
+                                        <TextField
+                                            className="mt-8 mb-8 mr-16"
+                                            label="Website"
+                                            autoFocus
+                                            type="text"
+                                            id="uni_website"
+                                            name="uni_website"
+                                            value={website || ''}
+                                            onChange={(e) => setWebsite(e.target.value)}
+                                            variant="outlined"
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6}>
+                                        <TextField
+                                            className="mt-8 mb-8"
+                                            label="Google Map Link"
+                                            type="text"
+                                            id="uni_map"
+                                            name="uni_map"
+                                            value={map_link || ''}
+                                            onChange={(e) => setMapLink(e.target.value)}
+                                            variant="outlined"
+                                            fullWidth
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <TextField
+                                        className="mt-8 mb-8"
+                                        label="Title"
+                                        type="text"
+                                        id="title"
+                                        name="title"
+                                        variant="outlined"
+                                        fullWidth
+                                    // onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                </Grid>
+                            </div>
+                        </Grid>
                     </Grid>
-                </Grid>
 
-                <Grid container spacing={1}>
-                    <Grid item xs={10} sm={10}>
+                    <Grid container spacing={1}>
+                        <Grid item xs={10} sm={10}>
 
-                        <UniversityProfileEditBottom
-                            customData={customData}
-                            addCustom={addCustom}
-                            removeCustom={removeCustom}
-                        />
+                            <UniversityProfileEditBottom
+                                customData={customData}
+                                addCustom={addCustom}
+                                removeCustom={removeCustom}
+                                compusArr={compusArr}
+                                setCustomData={(data) => setCustomData(data)}
+                            />
 
+                        </Grid>
+                        <Grid item={2} sm={2}>
+                            <Fab size="small" color="secondary" aria-label="add" className="mt-16">
+                                <AddIcon onClick={addCustom} />
+                            </Fab>
+
+                        </Grid>
                     </Grid>
-                    <Grid item={2} sm={2}>
-                        <Fab size="small" color="secondary" aria-label="add" className="mt-16">
-                            <AddIcon onClick={addCustom} />
-                        </Fab>
+                    <div className="p-16 float-right">
+                        <Button variant="contained" color="secondary" onClick={onSubmit} className="mr-16" >
+                            Submit
+                    </Button>
+                        <Button variant="contained" color="primary" >
+                            Cancel
+                    </Button>
+                    </div>
+                </Card >
+            )
 
-                    </Grid>
-                </Grid>
-                <div className="p-16 float-right">
-                    <Button variant="contained" color="secondary" onClick={onSubmit} className="mr-16" >
-                        Submit
-                </Button>
-                    <Button variant="contained" color="primary" >
-                        Cancel
-                </Button>
-                </div>
-            </Card >
         )
-
-        // {/* </Paper> */}
-    )
+    else
+        return (
+            <Card className="w-full overflow-hidden"></Card>
+        )
 }
 
 export default withReducer('university', reducer)(UniversityProfileEdit);

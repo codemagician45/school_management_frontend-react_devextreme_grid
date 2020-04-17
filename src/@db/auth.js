@@ -1,10 +1,14 @@
 import _ from '@lodash';
 import jwt from 'jsonwebtoken';
 import mock from './mock';
+import axios from 'axios';
 /* eslint-disable camelcase */
 
-var users = []; // eslint-disable-next-line
-fetch('http://localhost:3000/api/users').then(response => response.json()).then(data => data.map(row => {
+const users = []; // eslint-disable-next-line
+// var authDB = {
+// }
+// const authDB = Object.create(null);
+fetch('http://localhost:3000/api/users').then(response => response.json()).then(res => res.map(row => {
 	const data = {
 		uuid: row.uuid,
 		password: row.password,
@@ -51,16 +55,14 @@ fetch('http://localhost:3000/api/users').then(response => response.json()).then(
 		}
 	};
 	users.push(data);
-	// console.log(data);
-}))
-
+	// authDB = {
+	// 	users: users
+	// }
+}));
 const authDB = {
 	users: users
-};
-
-// console.log(users);
-// console.log("authDB", authDB);
-
+}
+// console.log(authDB.users);
 const jwtConfig = {
 	secret: '|?af%fF<|?kiuartppasf%dfF<fF<^FDf42',
 	expiresIn: 5 // A numeric value is interpreted as a seconds count. If you use a string be sure you provide the time units (days, hours, etc)
@@ -98,11 +100,16 @@ mock.onGet('/api/auth/access-token').reply(config => {
 
 	try {
 		const { id } = jwt.verify(access_token, jwtConfig.secret);
-
-		const user = _.cloneDeep(authDB.users.find(_user => _user.uuid === id));
+		const { users } = authDB;
+		console.log("aaa", id)
+		console.log("bbb", users.length)
+		// const user = _.cloneDeep(authDB.users.find(_user => _user.uuid === id));
+		const user = authDB.users.find(_user => _user.uuid == id);
+		console.log("ccc", user)
 		delete user.password;
 
 		const updatedAccessToken = jwt.sign({ id: user.uuid }, jwtConfig.secret, { expiresIn: jwtConfig.expiresIn });
+
 
 		const response = {
 			user,
