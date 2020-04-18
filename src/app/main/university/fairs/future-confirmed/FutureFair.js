@@ -4,7 +4,6 @@ import FusePageSimple from '@fuse/core/FusePageSimple';
 import FuseAnimateGroup from '@fuse/core/FuseAnimateGroup';
 import FutureFairTable from '../future-confirmed/FutureFairTable'
 
-
 const useStyles = makeStyles({
     header: {
         background: '#039be5'
@@ -12,6 +11,7 @@ const useStyles = makeStyles({
 });
 
 export default function FutureFair() {
+
     const classes = useStyles();
 
     return (
