@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Divider } from '@material-ui/core';
+import { Typography, } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 
 import withReducer from 'app/store/withReducer';
@@ -8,10 +8,8 @@ import reducer from '../../store/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import DataGrid, {
     Column,
-    FormItem,
     Editing,
     Paging,
-    Lookup
 } from 'devextreme-react/data-grid';
 import 'devextreme-react/text-area';
 
@@ -21,8 +19,6 @@ function UsersTable() {
     const users = useSelector(({ university }) => university.users.data);
     const [updatedUser, setUser] = useState(null);
     const [addedUser, addUser] = useState(null);
-    console.log(users)
-    // console.log(updatedUser)
 
     useEffect(() => {
         dispatch(Actions.getUsers())
@@ -76,14 +72,6 @@ function UsersTable() {
                     <Column dataField="phone" caption="Phone" />
                     <Column dataField="ext" caption="Ext" />
                     <Column dataField="title" caption="Title" />
-                    {/* <Column caption="View" />
-                    <Column caption="Suspend" /> */}
-                    {/* <Lookup dataSource={states} valueExpr="ID" displayExpr="Name" />
-                    </Column>
-                    <Column dataField="BirthDate" dataType="date" />
-                    <Column dataField="Notes" visible={false}>
-                        <FormItem colSpan={2} editorType="dxTextArea" editorOptions={{ height: 100 }} />
-                    </Column> */}
                 </DataGrid>
 
             </div>
@@ -92,4 +80,3 @@ function UsersTable() {
 }
 
 export default withReducer('university', reducer)(UsersTable);
-// export default UsersTable;

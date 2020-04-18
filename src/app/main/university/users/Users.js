@@ -2,11 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
 import FuseAnimateGroup from '@fuse/core/FuseAnimateGroup';
-import UsersAdd from './UsersAdd';
 import UsersTable from './UsersTable';
-// import { FusePageCarded, DemoContent } from '@fuse/core';
-// import TeachersTable from './TeachersTable';
-import { Divider } from '@material-ui/core';
+
 const useStyles = makeStyles({
     header: {
         background: '#039be5'
@@ -15,7 +12,6 @@ const useStyles = makeStyles({
 
 export default function Users() {
     const classes = useStyles();
-
     return (
         <FusePageSimple
             classes={{

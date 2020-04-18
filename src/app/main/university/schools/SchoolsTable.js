@@ -5,9 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
 import * as Actions from '../../store/actions';
-// import reducer from '../../../store/reducers';
-
-
 
 function SchoolsTable() {
 
@@ -27,20 +24,16 @@ function SchoolsTable() {
                     showBorders={true}
                     allowColumnResizing={true}
                     allowColumnReordering={true}
-                    // ref={(ref) => this.dataGrid = ref}
                     rowAlternationEnabled={true}
                     columnAutoWidth={true}
-                // onToolbarPreparing={this.onToolbarPreparing}
                 >
                     <RemoteOperations />
                     <SearchPanel visible={true} width={240} placeholder="Search..." />
                     <Sorting mode="multiple" />
-                    {/* <Editing mode="row" allowUpdating={true} allowDeleting={true} allowAdding={true} /> */}
                     <StateStoring enabled={true} type="localStorage" storageKey="parentsTable" />
                     <Export enabled={true} fileName="Parents" allowExportSelectedData={true} />
                     <Selection mode="multiple" />
                     <GroupPanel visible={false} />
-                    {/* <Column dataField="id" caption="ID" /> */}
                     <Column dataField="name" caption="School Name" />
                     <Column dataField="email" caption="School Email" />
                     <Column dataField="phone" caption="School Phone" />
@@ -59,7 +52,5 @@ function SchoolsTable() {
 const cellRender = (link) => {
     return <a href={link.data.website} target="_blank" ><i className="dx-icon-link"></i></a>
 }
-
-
 // export default withReducer('university', reducer)(SchoolsTable);
 export default withRouter(SchoolsTable);

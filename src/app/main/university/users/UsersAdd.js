@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Input } from '@material-ui/core';
-import { TextFieldFormsy, CheckboxFormsy, RadioGroupFormsy, SelectFormsy, FuseChipSelectFormsy } from '@fuse/core/formsy';
+import { TextFieldFormsy, } from '@fuse/core/formsy';
 import { Button, Tab, Tabs, TextField, InputAdornment, Icon, Typography } from '@material-ui/core';
 import Formsy from 'formsy-react';
 import Grid from '@material-ui/core/Grid';
@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 const useStyle = makeStyles({
 
     common: {
-        // maxWidth: '80rem',
         paddingTop: '16px',
         paddingBottom: '16px',
         paddingLeft: '36px',
@@ -23,9 +22,6 @@ const useStyle = makeStyles({
     },
 
     button: {
-        // display: 'flex',
-        // flexDirection: 'column-reverse',
-        // padding: '16px',
         marginBottom: '24px',
         marginRight: '36px',
         float: 'right'
@@ -35,7 +31,6 @@ const useStyle = makeStyles({
         padding: '16px',
         paddingBottom: '0px'
     }
-
 });
 
 function UsersAdd() {
