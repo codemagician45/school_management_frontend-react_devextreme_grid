@@ -1,18 +1,18 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Input } from '@material-ui/core';
-import { TextFieldFormsy, CheckboxFormsy, RadioGroupFormsy, SelectFormsy, FuseChipSelectFormsy } from '@fuse/core/formsy';
-import { Button, Tab, Tabs, TextField, InputAdornment, Icon, Typography } from '@material-ui/core';
-import Formsy from 'formsy-react';
+// import { TextFieldFormsy, CheckboxFormsy, RadioGroupFormsy, SelectFormsy, FuseChipSelectFormsy } from '@fuse/core/formsy';
+import { Button, TextField, Icon } from '@material-ui/core';
+// import Formsy from 'formsy-react';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import withReducer from 'app/store/withReducer';
-import * as Actions from '../../store/actions';
-import reducer from '../../store/reducers';
-import { useForm } from '@fuse/hooks';
+import * as Actions from '../../../store/actions';
+import reducer from '../../../store/reducers';
+// import { useForm } from '@fuse/hooks';
 import _ from '@lodash';
 import UniversityProfileEditBottom from './UniversityProfileEditBottom';
 
@@ -39,7 +39,7 @@ const useStyle = makeStyles(theme => ({
 function UniversityProfileEdit() {
 
     const classes = useStyle();
-    const myUniPro = useSelector(({ university }) => university.uniprofile);
+    const myUniPro = useSelector(({ university }) => university.universities);
     const [id, setID] = useState(null);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');

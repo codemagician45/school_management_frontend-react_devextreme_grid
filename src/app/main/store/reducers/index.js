@@ -1,12 +1,16 @@
 import { combineReducers } from 'redux';
 import schools from './schools.reducer';
-import uniprofile from './uniprofile.reducer';
 import users from './users.reducer';
+import fairs from './fairs.reducer';
+import universities from './universities.reducer';
+import counselors from './counselors.reducer';
 
 const reducer = combineReducers({
     schools,
-    uniprofile,
-    users
+    users,
+    fairs,
+    universities,
+    counselors
 });
 
 export default reducer;

@@ -15,6 +15,20 @@ const fairsReducer = function (state = initialState, action) {
                     data: action.payload
                 }
             }
+        // case Actions.CREATE_FAIR:
+        //     {
+        //         return {
+        //             ...state,
+        //             data: action.payload
+        //         }
+        //     }
+        // case Actions.EDIT_FAIR:
+        //     {
+        //         return {
+        //             ...state,
+        //             data: action.payload
+        //         }
+        //     }
         case Actions.GET_CURRICULUMS:
             {
                 return {

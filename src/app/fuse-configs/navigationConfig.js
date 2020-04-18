@@ -508,12 +508,12 @@ const navigationConfig = [
 						type: 'item',
 						url: '/schools/fairs/fairs_list',
 					},
-					{
-						id: 'new-fair',
-						title: 'New Fair',
-						type: 'item',
-						url: '/schools/fairs/create_fair',
-					},
+					// {
+					// 	id: 'new-fair',
+					// 	title: 'New Fair',
+					// 	type: 'item',
+					// 	url: '/schools/fairs/create_fair',
+					// },
 
 
 				]

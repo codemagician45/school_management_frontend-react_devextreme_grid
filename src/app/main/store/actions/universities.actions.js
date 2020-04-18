@@ -3,6 +3,8 @@ import axios from 'axios';
 export const GET_UNIPRO = '[university] GET UNIPRO';
 export const UPDATE_UNIPRO = '[university] UPDATE UNIPRO';
 
+export const GET_UNIVERSITIES = '[school] GET_UNIVERSITIES';
+
 
 export function getUniProfile(data) {
 
@@ -21,7 +23,6 @@ export function getUniProfile(data) {
 }
 
 export function updateUniProfile(data) {
-    console.log("here is updating action", data)
 
     const request = axios.put(`${process.env.REACT_APP_API_URL}/university/update`, data);
     return (dispatch) =>
@@ -31,5 +32,19 @@ export function updateUniProfile(data) {
                 payload: response.data
             })
         );
+}
+
+export function getUniversities() {
+
+    const request = axios.get(`${process.env.REACT_APP_API_URL}/universities`);
+
+    return (dispatch) => {
+        request.then((response) => {
+            dispatch({
+                type: GET_UNIVERSITIES,
+                payload: response.data
+            })
+        })
+    }
 }
 

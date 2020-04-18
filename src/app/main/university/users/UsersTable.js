@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Divider } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import reducer from '../store/reducers';
+
 import withReducer from 'app/store/withReducer';
-import * as Actions from '../store/actions';
+import * as Actions from '../../store/actions';
+import reducer from '../../store/reducers';
 import { useDispatch, useSelector } from 'react-redux';
 import DataGrid, {
     Column,
@@ -13,7 +14,6 @@ import DataGrid, {
     Lookup
 } from 'devextreme-react/data-grid';
 import 'devextreme-react/text-area';
-import { updateUser } from '../store/actions';
 
 function UsersTable() {
 
@@ -66,9 +66,6 @@ function UsersTable() {
                     <Paging enabled={true} />
                     <Editing
                         mode="form"
-                        // form={
-                        //     items = ["name", "mobile"]
-                        // }
                         allowUpdating={true}
                         allowAdding={true}
                     />

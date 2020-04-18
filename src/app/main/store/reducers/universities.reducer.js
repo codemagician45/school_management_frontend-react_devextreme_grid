@@ -5,7 +5,7 @@ const initialState = {
 
 };
 
-const uniProReducer = function (state = initialState, action) {
+const universityReducer = function (state = initialState, action) {
     switch (action.type) {
         case Actions.GET_UNIPRO:
             {
@@ -14,7 +14,13 @@ const uniProReducer = function (state = initialState, action) {
                     data: action.payload
                 };
             }
-
+        case Actions.GET_UNIVERSITIES:
+            {
+                return {
+                    ...state,
+                    data: action.payload
+                }
+            }
         default:
             {
                 return state;
@@ -22,4 +28,4 @@ const uniProReducer = function (state = initialState, action) {
     }
 };
 
-export default uniProReducer;
+export default universityReducer;

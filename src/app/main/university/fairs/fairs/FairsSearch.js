@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import withReducer from 'app/store/withReducer'
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
-import * as Actions from '../../../school/store/actions';
-import reducer from '../../../school/store/reducers'
+import * as Actions from '../../../store/actions';
+import reducer from '../../../store/reducers'
 import Paper from '@material-ui/core/Paper';
 import { Typography, Grid, Select } from '@material-ui/core'
 import { SelectBox, RangeSlider, DateBox, Button } from 'devextreme-react';
@@ -73,12 +73,12 @@ function FairsSearch() {
 
     const FilterFairs = () => {
 
-        console.log(selectedCur)
         if (selectedCur != "All") {
 
             const cur = curriculums.filter(c => c.label && c.label == selectedCur);
 
             const curFilters = schools.filter((school) => school.curriculum_id == cur[0].id)
+
             const tuiFilters = curFilters.filter((school) => school.fees_grade11 + school.fees_grade12 > tuitionRange.start && school.fees_grade11 + school.fees_grade12 < tuitionRange.end)
             const stuFilters = tuiFilters.filter((school) => school.number_grade11 + school.number_grade12 > stuNumRange.start && school.number_grade11 + school.number_grade12 < stuNumRange.end)
 
@@ -114,9 +114,6 @@ function FairsSearch() {
         }
 
         console.log("finalRes", fairSearchRes)
-
-
-
     }
     // console.log(schools)
     // console.log(selectedCur);

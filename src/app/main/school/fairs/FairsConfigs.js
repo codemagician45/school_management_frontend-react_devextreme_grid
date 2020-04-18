@@ -11,10 +11,10 @@ const FairsConfigs = {
             path: '/schools/fairs/fairs_list',
             component: React.lazy(() => import('./fairs-list/FairsList'))
         },
-        {
-            path: '/schools/fairs/create_fair',
-            component: React.lazy(() => import('./new-fair/FairsCreate'))
-        },
+        // {
+        //     path: '/schools/fairs/create_fair',
+        //     component: React.lazy(() => import('./new-fair/FairsCreate'))
+        // },
     ]
 };
 

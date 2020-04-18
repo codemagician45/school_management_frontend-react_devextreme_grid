@@ -61,10 +61,13 @@ export function getUserProfile(id) {
 export function getUniversities() {
     const request = axios.get(`${process.env.REACT_APP_API_URL}/universities`);
     return (dispatch) =>
-        request.then((response) =>
+        request.then((response) => {
+            console.log(response)
             dispatch({
                 type: GET_UNIVERSITIES,
                 payload: response.data
             })
+
+        }
         );
 }

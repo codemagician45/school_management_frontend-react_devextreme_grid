@@ -20,6 +20,7 @@ fetch('http://localhost:3000/api/users').then(response => response.json()).then(
 			email: row.email,
 			id: row.id,
 			university_id: row.university_id,
+			school_id: row.school_id,
 			settings: {
 				layout: {
 					style: 'layout1',

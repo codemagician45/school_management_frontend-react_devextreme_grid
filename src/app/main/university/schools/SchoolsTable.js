@@ -4,7 +4,8 @@ import { Typography, Divider } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
-import * as Actions from '../store/actions';
+import * as Actions from '../../store/actions';
+// import reducer from '../../../store/reducers';
 
 
 

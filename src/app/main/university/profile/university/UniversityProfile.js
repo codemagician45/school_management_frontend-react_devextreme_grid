@@ -1,4 +1,4 @@
-import React, { createFactory } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
 import FuseAnimateGroup from '@fuse/core/FuseAnimateGroup';

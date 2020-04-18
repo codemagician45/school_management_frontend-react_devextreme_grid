@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
 import withReducer from 'app/store/withReducer'
 import { useDispatch, useSelector } from 'react-redux';
-import * as Actions from '../../../school/store/actions';
-import reducer from '../../../school/store/reducers'
+import * as Actions from '../../../store/actions';
+import reducer from '../../../store/reducers';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core'
 import DataGrid, {
     Column,
-    FormItem,
-    Editing,
+    // FormItem,
+    // Editing,
     Paging,
-    Lookup,
+    // Lookup,
     SearchPanel
 } from 'devextreme-react/data-grid';
 import 'devextreme-react/text-area';
