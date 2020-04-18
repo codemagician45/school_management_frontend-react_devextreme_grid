@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Input } from '@material-ui/core';
-// import { TextFieldFormsy, CheckboxFormsy, RadioGroupFormsy, SelectFormsy, FuseChipSelectFormsy } from '@fuse/core/formsy';
 import { Button, TextField, Icon } from '@material-ui/core';
-// import Formsy from 'formsy-react';
 import Grid from '@material-ui/core/Grid';
-// import Paper from '@material-ui/core/Paper';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import withReducer from 'app/store/withReducer';
 import * as Actions from '../../../store/actions';
 import reducer from '../../../store/reducers';
-// import { useForm } from '@fuse/hooks';
 import _ from '@lodash';
 import UniversityProfileEditBottom from './UniversityProfileEditBottom';
 
 
 const useStyle = makeStyles(theme => ({
     common: {
-        // maxWidth: '80rem',
         paddingTop: '16px',
         paddingBottom: '16px',
         paddingLeft: '36px',
@@ -39,6 +34,7 @@ const useStyle = makeStyles(theme => ({
 function UniversityProfileEdit() {
 
     const classes = useStyle();
+    const dispatch = useDispatch();
     const myUniPro = useSelector(({ university }) => university.universities);
     const [id, setID] = useState(null);
     const [name, setName] = useState('');
@@ -56,20 +52,17 @@ function UniversityProfileEdit() {
     const [customData, setCustomData] = useState([]);
     const [img, setImage] = useState(null);
 
-    const dispatch = useDispatch();
-
     const myUniId = {
         id: localStorage.getItem('uni_id')
     }
     const custom = [];
+
     useEffect(() => {
         dispatch(Actions.getUniProfile(myUniId));
     }, [dispatch]);
 
-
     useEffect(() => {
         if (myUniId && myUniPro.data) {
-
             setID(myUniPro.data[0] && myUniPro.data[0].id);
             setName(myUniPro.data[0] && myUniPro.data[0].name);
             setPhone(myUniPro.data[0] && myUniPro.data[0].phone);
@@ -84,12 +77,10 @@ function UniversityProfileEdit() {
             setUserEmail(myUniPro.data[0] && myUniPro.data[0].emails && myUniPro.data[0].emails.split(","));
             setImage(myUniPro.data[0] && myUniPro.data[0].logo);
         }
-
     }, [myUniPro.data])
-    console.log(myUniPro);
+
     useEffect(() => {
         if (userName) {
-
             userName.forEach(function (e, i) {
                 custom.push({
                     compus: compus && compus[i] ? compus[i] : '',
@@ -100,11 +91,9 @@ function UniversityProfileEdit() {
                     emails: userEmail && userEmail[i] ? userEmail[i] : ''
                 })
             });
-
             setCustomData(custom);
         }
     }, [userName])
-
 
     const newCustom = {
         compus: '',
@@ -115,12 +104,10 @@ function UniversityProfileEdit() {
         emails: ''
     }
 
-
-
-
     const addCustom = () => {
         setCustomData([...customData, newCustom])
     }
+
     const removeCustom = (e) => {
         setCustomData(customData.filter((data, i) => i != e))
     }
@@ -133,14 +120,12 @@ function UniversityProfileEdit() {
     const userEmailArr = [];
 
     const onSubmit = () => {
-        console.log("submit event", customData)
         customData.map(data => compusArr.push(data.compus));
         customData.map(data => countryArr.push(data.country));
         customData.map(data => cityArr.push(data.city));
         customData.map(data => addressArr.push(data.address));
         customData.map(data => userNameArr.push(data.users));
         customData.map(data => userEmailArr.push(data.emails));
-
         const updateData = {
             id: localStorage.getItem('uni_id'),
             name: name,
@@ -156,9 +141,7 @@ function UniversityProfileEdit() {
             logo: img && img
         }
         dispatch(Actions.updateUniProfile(updateData));
-
     }
-    console.log("custom", customData)
 
     const handleUploadChange = (e) => {
         const file = e.target.files[0];
@@ -170,15 +153,6 @@ function UniversityProfileEdit() {
         reader.readAsBinaryString(file);
 
         reader.onload = () => {
-            // setImage(
-
-            //     {
-            //         'id': FuseUtils.generateGUID(),
-            //         'url': `data:${file.type};base64,${btoa(reader.result)}`,
-            //         'type': 'image'
-            //     }
-
-            // );
             setImage(
                 `data:${file.type};base64,${btoa(reader.result)}`
             )
@@ -188,12 +162,11 @@ function UniversityProfileEdit() {
             console.log("error on load image");
         };
     }
-    console.log("uni", img)
+
     if (id)
         return (
             id && (
                 <Card className="w-full overflow-hidden">
-                    {/* <Paper className="w-full mt-24"> */}
                     <Grid container spacing={1}>
                         <Grid item xs={12} sm={2}>
                             <div className={classes.img}>
@@ -304,7 +277,6 @@ function UniversityProfileEdit() {
                                         name="title"
                                         variant="outlined"
                                         fullWidth
-                                    // onChange={(e) => setTitle(e.target.value)}
                                     />
                                 </Grid>
                             </div>
@@ -313,7 +285,6 @@ function UniversityProfileEdit() {
 
                     <Grid container spacing={1}>
                         <Grid item xs={10} sm={10}>
-
                             <UniversityProfileEditBottom
                                 customData={customData}
                                 addCustom={addCustom}
@@ -321,13 +292,11 @@ function UniversityProfileEdit() {
                                 compusArr={compusArr}
                                 setCustomData={(data) => setCustomData(data)}
                             />
-
                         </Grid>
                         <Grid item={2} sm={2}>
                             <Fab size="small" color="secondary" aria-label="add" className="mt-16">
                                 <AddIcon onClick={addCustom} />
                             </Fab>
-
                         </Grid>
                     </Grid>
                     <div className="p-16 float-right">

@@ -12,6 +12,7 @@ import DataGrid, {
     Paging,
     SearchPanel
 } from 'devextreme-react/data-grid';
+
 const useStyle = makeStyles(theme => ({
     item: {
         width: '80%',
@@ -51,7 +52,6 @@ function FairsSearch() {
         dispatch(Actions.getSchools());
     }, [dispatch])
 
-
     if (curriculums.length != 0) {
         curriculums.map(curriculum => curriculumData.push(curriculum.label))
     };
@@ -72,55 +72,30 @@ function FairsSearch() {
     const today = new Date();
 
     const FilterFairs = () => {
-
         if (selectedCur != "All") {
-
             const cur = curriculums.filter(c => c.label && c.label == selectedCur);
-
             const curFilters = schools.filter((school) => school.curriculum_id == cur[0].id)
-
             const tuiFilters = curFilters.filter((school) => school.fees_grade11 + school.fees_grade12 > tuitionRange.start && school.fees_grade11 + school.fees_grade12 < tuitionRange.end)
             const stuFilters = tuiFilters.filter((school) => school.number_grade11 + school.number_grade12 > stuNumRange.start && school.number_grade11 + school.number_grade12 < stuNumRange.end)
-
             const iniFairs = [];
             stuFilters.map(result => iniFairs.push(result.id));
-
             const fairsBeforeDate = fairs.filter(fair => iniFairs.indexOf(fair.school_id) > -1)
-
             const fromFairs = fairsBeforeDate.filter(fair => from < Date.parse(fair.start_date));
             const endFairs = fromFairs.filter(fair => to > Date.parse(fair.end_date))
-            // console.log("not all here", endFairs)
             setFairSearchRes(endFairs)
-
         }
-
         else {
-
             const curFilters = schools
             const tuiFilters = curFilters.filter((school) => school.fees_grade11 + school.fees_grade12 > tuitionRange.start && school.fees_grade11 + school.fees_grade12 < tuitionRange.end)
             const stuFilters = tuiFilters.filter((school) => school.number_grade11 + school.number_grade12 > stuNumRange.start && school.number_grade11 + school.number_grade12 < stuNumRange.end)
-
             const iniFairs = [];
             stuFilters.map(result => iniFairs.push(result.id));
-
             const fairsBeforeDate = fairs.filter(fair => iniFairs.indexOf(fair.school_id) > -1)
-
             const fromFairs = fairsBeforeDate.filter(fair => from < Date.parse(fair.start_date));
             const endFairs = fromFairs.filter(fair => to > Date.parse(fair.end_date))
-
             setFairSearchRes(endFairs)
-
-
         }
-
-        console.log("finalRes", fairSearchRes)
     }
-    // console.log(schools)
-    // console.log(selectedCur);
-    // console.log(tuitionRange);
-    // console.log(stuNumRange);
-    // console.log(from);
-    // console.log(to)
 
     return (
         curriculums &&
@@ -133,22 +108,13 @@ function FairsSearch() {
                             <Typography className="text-16">Curriculum</Typography>
                             <SelectBox dataSource={curriculumData}
                                 defaultValue={"All"}
-                                // value={currId}
                                 onValueChanged={(e) => setCur(e.value)}
-                            // displayExpr="Name"
-                            // searchEnabled={true}
-                            // searchMode={this.state.searchModeOption}
-                            // searchExpr={this.state.searchExprOption}
-                            // searchTimeout={this.state.searchTimeoutOption}
-                            // minSearchLength={this.state.minSearchLengthOption}
-                            // showDataBeforeSearch={this.state.showDataBeforeSearchOption} 
                             />
                         </Grid>
                         <Grid item xs={12} sm={4}>
                             <Typography className="text-16">Tuition Fees:</Typography>
                             <RangeSlider min={0} max={1000} defaultValue={[0, 1000]} tooltip={{
                                 enabled: true,
-                                // format,
                                 showMode: 'always',
                                 position: 'bottom'
                             }}
@@ -159,7 +125,6 @@ function FairsSearch() {
                             <Typography className="text-16">Student's Number:</Typography>
                             <RangeSlider min={0} max={1000} defaultValue={[0, 1000]} tooltip={{
                                 enabled: true,
-                                // format,
                                 showMode: 'always',
                                 position: 'bottom'
                             }}
@@ -193,10 +158,7 @@ function FairsSearch() {
                                 onClick={FilterFairs}
                             />
                         </Grid>
-
-
                     </Grid>
-
                     <DataGrid
                         dataSource={fairSearchRes}
                         // keyExpr="id"
