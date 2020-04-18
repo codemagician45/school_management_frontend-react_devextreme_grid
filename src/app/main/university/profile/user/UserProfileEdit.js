@@ -1,24 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, Input } from '@material-ui/core';
-import { TextFieldFormsy, CheckboxFormsy, RadioGroupFormsy, SelectFormsy, FuseChipSelectFormsy } from '@fuse/core/formsy';
 import { Button, TextField, Select, MenuItem, InputLabel, FormControl, Icon } from '@material-ui/core';
-import Formsy from 'formsy-react';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import withReducer from 'app/store/withReducer';
 import * as Actions from '../../../store/actions';
 import reducer from '../../../store/reducers';
-import { useForm } from '@fuse/hooks';
 import _ from '@lodash';
-import FuseUtils from '@fuse/utils/FuseUtils';
 
 const useStyle = makeStyles(theme => ({
     common: {
-        // maxWidth: '80rem',
         paddingTop: '16px',
         paddingBottom: '16px',
         paddingLeft: '36px',
@@ -26,7 +18,6 @@ const useStyle = makeStyles(theme => ({
         width: '100%'
     },
     formControl: {
-        // margin: theme.spacing(1),
         minWidth: 150,
     },
     upload: {
@@ -65,11 +56,8 @@ function UserProfileEdit() {
         dispatch(Actions.getUniversities());
     }, [dispatch]);
 
-    console.log(myUserPro)
-    // console.log("universities", universities)
     useEffect(() => {
         if (myUserPro.data && myUserPro.universities) {
-
             setID(myUserPro.data[0] && myUserPro.data[0].id);
             setName(myUserPro.data[0] && myUserPro.data[0].name);
             setPhone(myUserPro.data[0] && myUserPro.data[0].phone);
@@ -81,7 +69,6 @@ function UserProfileEdit() {
             const myUniId = myUserPro.data[0] && myUserPro.data[0].university_id
             const uniSelect = myUserPro.universities.filter(uni => uni.id == myUniId)
             setSelect(uniSelect[0] && uniSelect[0].id)
-
         }
 
     }, [myUserPro])
@@ -90,10 +77,7 @@ function UserProfileEdit() {
         <MenuItem key={uni.name} value={uni.id}>{uni.name}</MenuItem>
     )
 
-    console.log(select);
-
     const onSubmit = () => {
-
         const userEditData = {
             id: localStorage.getItem('user_id'),
             name: name,
@@ -118,15 +102,6 @@ function UserProfileEdit() {
         reader.readAsBinaryString(file);
 
         reader.onload = () => {
-            // setImage(
-
-            //     {
-            //         'id': FuseUtils.generateGUID(),
-            //         'url': `data:${file.type};base64,${btoa(reader.result)}`,
-            //         'type': 'image'
-            //     }
-
-            // );
             setImage(
                 `data:${file.type};base64,${btoa(reader.result)}`
             )
@@ -136,16 +111,12 @@ function UserProfileEdit() {
             console.log("error on load image");
         };
     }
-    console.log(img)
     if (id && select)
         return (
-            // id && select && (
             <Card className="w-full overflow-hidden">
-                {/* <Paper className="w-full mt-24"> */}
                 <Grid container spacing={1}>
                     <Grid item xs={12} sm={2}>
                         <div className={classes.img}>
-                            {/* <img className="max-w-none w-auto h-full pl-16" src="assets/images/logos/headmaster.svg" alt="user" /> */}
                             <div className={classes.upload}>
                                 <input
                                     accept="image/*"
@@ -258,22 +229,6 @@ function UserProfileEdit() {
                                 />
                             </Grid>
                             <Grid container spacing={3}>
-
-                                {/* <Grid item xs={12} sm={6}>
-                                    <Select
-                                        className={classes.formControl}
-                                        id="type"
-                                        variant="outlined"
-                                    // open={open}
-                                    // onClose={handleClose}
-                                    // onOpen={handleOpen}
-                                    // value={age}
-                                    // onChange={handleChange}
-                                    >
-                                        <MenuItem value={"university"}>University</MenuItem>
-                                    </Select>
-                                </Grid> */}
-
                                 <Grid item xs={12} sm={6}>
                                     <FormControl className={classes.formControl}>
                                         <InputLabel id="universities" className="pl-16">University</InputLabel>
@@ -282,8 +237,6 @@ function UserProfileEdit() {
                                             id="type"
                                             variant="outlined"
                                             onChange={(e) => setSelect(e.target.value)}
-
-                                            // defaultValue={select}
                                             defaultValue={select}
                                             value={select ? select : ''}
                                         >
@@ -304,9 +257,6 @@ function UserProfileEdit() {
                 </Button>
                 </div>
             </Card >
-            // )
-
-            // {/* </Paper> */}
         )
     else
         return (

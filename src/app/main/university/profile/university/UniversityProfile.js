@@ -12,6 +12,7 @@ const useStyles = makeStyles({
 });
 
 export default function UniversityProfile() {
+
     const classes = useStyles();
 
     return (

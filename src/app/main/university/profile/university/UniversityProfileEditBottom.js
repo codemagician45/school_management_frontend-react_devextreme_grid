@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Fab from '@material-ui/core/Fab';
-// import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { TextField } from '@material-ui/core';
 
@@ -23,12 +22,6 @@ export default function UniversityProfileEditBottom(props) {
 
     const classes = useStyle();
     const { customData } = props;
-    // if (customData.length != 0)
-    //     console.log("customData", customData)
-
-    // const [compus, setCompus] = useState('');
-    // console.log(compus)
-
 
     return (
         customData.map(
@@ -41,13 +34,11 @@ export default function UniversityProfileEditBottom(props) {
                                     className="mt-8 mb-8 mr-12"
                                     label="Compus"
                                     type="text"
-                                    // id="compus"
                                     name="compus"
                                     variant="outlined"
                                     fullWidth
                                     defaultValue={data.compus}
                                     onChange={(e) => {
-                                        // props.compusArr.push(e.target.value)
                                         var _tempData = customData;
                                         _tempData[i].compus = e.target.value;
                                         props.setCustomData(_tempData);
@@ -59,14 +50,11 @@ export default function UniversityProfileEditBottom(props) {
                                     className="mt-8 mb-8 mr-12"
                                     label="Country"
                                     type="text"
-                                    // id="country"
                                     name="country"
                                     variant="outlined"
                                     fullWidth
                                     defaultValue={data.country}
-                                    // key={"country" + i}
                                     onChange={(e) => {
-                                        // props.compusArr.push(e.target.value)
                                         var _tempData = customData;
                                         _tempData[i].country = e.target.value;
                                         props.setCustomData(_tempData);
@@ -78,14 +66,11 @@ export default function UniversityProfileEditBottom(props) {
                                     className="mt-8 mb-8 mr-12"
                                     label="City"
                                     type="text"
-                                    // id="city"
                                     name="city"
                                     variant="outlined"
                                     fullWidth
                                     defaultValue={data.city}
-                                    // key={"city" + i}
                                     onChange={(e) => {
-                                        // props.compusArr.push(e.target.value)
                                         var _tempData = customData;
                                         _tempData[i].city = e.target.value;
                                         props.setCustomData(_tempData);
@@ -97,14 +82,11 @@ export default function UniversityProfileEditBottom(props) {
                                     className="mt-8 mb-8 mr-12"
                                     label="Address"
                                     type="text"
-                                    // id="address"
                                     name="address"
                                     variant="outlined"
                                     fullWidth
                                     defaultValue={data.address}
-                                    // key={"address" + i}
                                     onChange={(e) => {
-                                        // props.compusArr.push(e.target.value)
                                         var _tempData = customData;
                                         _tempData[i].address = e.target.value;
                                         props.setCustomData(_tempData);
@@ -116,14 +98,11 @@ export default function UniversityProfileEditBottom(props) {
                                     className="mt-8 mb-8 mr-12"
                                     label="User Name"
                                     type="text"
-                                    // id="user_name"
                                     name="user_name"
                                     variant="outlined"
                                     fullWidth
                                     defaultValue={data.users}
-                                    // key={"user_name" + i}
                                     onChange={(e) => {
-                                        // props.compusArr.push(e.target.value)
                                         var _tempData = customData;
                                         _tempData[i].users = e.target.value;
                                         props.setCustomData(_tempData);
@@ -135,14 +114,11 @@ export default function UniversityProfileEditBottom(props) {
                                     className="mt-8 mb-8 mr-12"
                                     label="Email"
                                     type="text"
-                                    // id="user_email"
                                     name="user_email"
                                     variant="outlined"
                                     fullWidth
                                     defaultValue={data.emails}
-                                    // key={"user_email" + i}
                                     onChange={(e) => {
-                                        // props.compusArr.push(e.target.value)
                                         var _tempData = customData;
                                         _tempData[i].emails = e.target.value;
                                         props.setCustomData(_tempData);
@@ -154,7 +130,6 @@ export default function UniversityProfileEditBottom(props) {
                     <div className={classes.addRemove}>
 
                         <Fab size="small" color="primary" aria-label="add" className={classes.margin}
-                        //  key={"remove" + i}
                         >
                             <RemoveIcon
                                 onClick={() => props.removeCustom(i)}
